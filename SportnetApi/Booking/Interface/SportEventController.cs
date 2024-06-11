@@ -1,4 +1,5 @@
 using System.Net.Mime;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SportnetApi.Booking.Domain.Model.Aggregates;
 using SportnetApi.Booking.Domain.Model.Commands;
@@ -15,6 +16,7 @@ namespace SportnetApi.Booking.Interface;
 [Route("api/v1/[controller]")]
 [ProducesResponseType(400)]
 [ProducesResponseType(500)]
+[AllowAnonymous]
 
 public class SportEventController(ISportEventCommandService sportEventCommandService, ISportEventQueryService sportEventQueryService) : ControllerBase
 {
@@ -24,11 +26,10 @@ public class SportEventController(ISportEventCommandService sportEventCommandSer
     {
         var query = new CountSportNamesByLocationAndEventNameAndSportTypeQuery(resource.Location, resource.EventName, resource.SportType);
         var command = CreateSportEventCommandFromResourceAssembler.ToCommandFromResource(resource);
-        var count = await sportEventQueryService.Handle(query.Location, query.EventName, query.SportType);
-        if (count >= 2)
+        var countRegisters = await sportEventQueryService.Handle(query.Location, query.EventName, query.SportType);
+        if (countRegisters >= 2)
         {
-            throw new SportEventAlreadyHave2RegisteresException(
-                "The sport event already have 2 registers in this location.");
+            throw new SportEventAlreadyHave2RegisteresException("The sport event already have 2 registers in this location.");
         }
         var sportEvent = new SportEvent(command);
         await sportEventCommandService.Handle(command);
