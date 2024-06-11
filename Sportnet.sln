@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportnetApi", "SportnetApi\SportnetApi.csproj", "{AEF45201-4DC4-4786-BCA1-EEB3F013019E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEF45201-4DC4-4786-BCA1-EEB3F013019E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEF45201-4DC4-4786-BCA1-EEB3F013019E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEF45201-4DC4-4786-BCA1-EEB3F013019E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEF45201-4DC4-4786-BCA1-EEB3F013019E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
